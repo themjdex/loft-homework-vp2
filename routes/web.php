@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,16 +14,49 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/test', [\App\Http\Controllers\ProductController::class, 'index']);
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [\App\Http\Controllers\ProductController::class, 'index']);
+
+Route::get('/orders', [\App\Http\Controllers\OrderController::class, 'showMyOrders'])->middleware(['auth']);
+
+Route::get('/admin', function () {
+    return view('admin');
+})->middleware(['auth'])->name('admin');
+
+Route::get('/category', function () {
+    return view('category');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/product/{id}', function () {
+    return view('product');
+});
 
-Route::get('/books', [\App\Http\Controllers\BookController::class, 'index']);
+Route::group(['prefix' => 'checkout', 'middleware' => 'auth'], function () {
+    Route::get('/{id}', [\App\Http\Controllers\OrderController::class, 'index']);
+    Route::post('/send', [\App\Http\Controllers\OrderController::class, 'sendOrder']);
+});
+
+
+Route::get('/news', function () {
+    return view('news');
+});
+
+Route::get('/about', function () {
+    return view('about');
+});
+
+Route::get('/logout', function (Request $request) {
+    Auth::guard('web')->logout();
+
+    $request->session()->invalidate();
+
+    $request->session()->regenerateToken();
+
+    return redirect('/');
+});
+
+//Route::get('/books', [\App\Http\Controllers\BookController::class, 'index']);
 //Route::group(['prefix' => 'books', 'middleware' => 'ololo'], function(){
 //    Route::get('/', 'BookController@index')->name('books');
 //    Route::get('create', 'BookController@create')->name('books.create');
