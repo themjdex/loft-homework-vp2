@@ -34,7 +34,9 @@
             @if (Route::has('login'))
                 <div class="authorization-block">
                     @auth
-                        <a href="{{ url('/admin') }}" class="authorization-block__link">Админка</a>
+                        @if(Auth::user()->user_role == 'admin')
+                            <a href="{{ url('/admin') }}" class="authorization-block__link">Админка</a>
+                        @endif
                         <a href="{{ url('/logout') }}" class="authorization-block__link">Выйти</a>
                     @else
                         <a href="{{ route('login') }}" class="authorization-block__link">Войти</a>
@@ -104,56 +106,16 @@
                     <div class="cart-product-list">
                         @foreach($orders as $order)
                             <div class="cart-product-list__item">
-                                <div class="cart-product__item__product-photo"><img src="../../public/img/cover/game-1.jpg" class="cart-product__item__product-photo__image"></div>
+                                <div class="cart-product__item__product-photo"><img src={{ $order->image }} class="cart-product__item__product-photo__image"></div>
                                 <div class="cart-product__item__product-name">
-                                    <div class="cart-product__item__product-name__content"><a href="#">{{ $order->product_id }}}</a></div>
+                                    <div class="cart-product__item__product-name__content"><a href="./product/{{ $order->product_id }}">{{ $order->name }}</a></div>
                                 </div>
                                 <div class="cart-product__item__cart-date">
                                     <div class="cart-product__item__cart-date__content">{{ $order->created_at }}</div>
                                 </div>
-                                <div class="cart-product__item__product-price"><span class="product-price__value">400 рублей</span></div>
+                                <div class="cart-product__item__product-price"><span class="product-price__value">{{ $order->price }} рублей</span></div>
                             </div>
                         @endforeach
-{{--                        <div class="cart-product-list__item">--}}
-{{--                            <div class="cart-product__item__product-photo"><img src="../../public/img/cover/game-1.jpg" class="cart-product__item__product-photo__image"></div>--}}
-{{--                            <div class="cart-product__item__product-name">--}}
-{{--                                <div class="cart-product__item__product-name__content"><a href="#">The Witcher</a></div>--}}
-{{--                            </div>--}}
-{{--                            <div class="cart-product__item__cart-date">--}}
-{{--                                <div class="cart-product__item__cart-date__content">14.12.2016</div>--}}
-{{--                            </div>--}}
-{{--                            <div class="cart-product__item__product-price"><span class="product-price__value">400 рублей</span></div>--}}
-{{--                        </div>--}}
-{{--                        <div class="cart-product-list__item">--}}
-{{--                            <div class="cart-product__item__product-photo"><img src="../../public/img/cover/game-2.jpg" class="cart-product__item__product-photo__image"></div>--}}
-{{--                            <div class="cart-product__item__product-name">--}}
-{{--                                <div class="cart-product__item__product-name__content"><a href="#">OverWatch</a></div>--}}
-{{--                            </div>--}}
-{{--                            <div class="cart-product__item__cart-date">--}}
-{{--                                <div class="cart-product__item__cart-date__content">14.12.2016</div>--}}
-{{--                            </div>--}}
-{{--                            <div class="cart-product__item__product-price"><span class="product-price__value">400 рублей</span></div>--}}
-{{--                        </div>--}}
-{{--                        <div class="cart-product-list__item">--}}
-{{--                            <div class="cart-product__item__product-photo"><img src="../../public/img/cover/game-3.jpg" class="cart-product__item__product-photo__image"></div>--}}
-{{--                            <div class="cart-product__item__product-name">--}}
-{{--                                <div class="cart-product__item__product-name__content"><a href="#">DeusEx</a></div>--}}
-{{--                            </div>--}}
-{{--                            <div class="cart-product__item__cart-date">--}}
-{{--                                <div class="cart-product__item__cart-date__content">14.12.2016</div>--}}
-{{--                            </div>--}}
-{{--                            <div class="cart-product__item__product-price"><span class="product-price__value">400 рублей</span></div>--}}
-{{--                        </div>--}}
-{{--                        <div class="cart-product-list__item">--}}
-{{--                            <div class="cart-product__item__product-photo"><img src="../../public/img/cover/game-4.jpg" class="cart-product__item__product-photo__image"></div>--}}
-{{--                            <div class="cart-product__item__product-name">--}}
-{{--                                <div class="cart-product__item__product-name__content"><a href="#">World Of Warcraft</a></div>--}}
-{{--                            </div>--}}
-{{--                            <div class="cart-product__item__cart-date">--}}
-{{--                                <div class="cart-product__item__cart-date__content">14.12.2016</div>--}}
-{{--                            </div>--}}
-{{--                            <div class="cart-product__item__product-price"><span class="product-price__value">400 рублей</span></div>--}}
-{{--                        </div>--}}
                     </div>
                 </div>
                 <div class="content-footer__container">

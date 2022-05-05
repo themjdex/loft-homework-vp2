@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AdminEmail;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
@@ -32,13 +35,22 @@ class OrderController extends Controller
         $order->email = $request->email;
 
         $order->save();
-        Mail::to('themjdex@gmail.com')->send(new \App\Mail\Order($order));
+        Mail::to($this->getMailer())->send(new \App\Mail\Order($order));
         return redirect('/');
     }
     function showMyOrders()
     {
-        $user = Auth::user();
-        $res = Order::query()->where('email', $user->email)->get();
-        return view('orders', ['orders' => $res]);
+        $data = DB::table('products')
+            ->join('orders', function ($join) {
+                $join->on('products.id', '=', 'orders.product_id')
+                    ->where('email', '=', Auth::user()->email);
+            })
+            ->get();
+        return view('orders', ['orders' => $data]);
+    }
+
+    public function getMailer()
+    {
+        return AdminEmail::query()->value('admin_email');
     }
 }

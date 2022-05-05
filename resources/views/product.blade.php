@@ -15,10 +15,10 @@
         <div class="logotype-container"><a href="#" class="logotype-link"><img src="../../public/img/logo.png" alt="Логотип"></a></div>
         <nav class="main-navigation">
             <ul class="nav-list">
-                <li class="nav-list__item"><a href="./" class="nav-list__item__link">Главная</a></li>
-                <li class="nav-list__item"><a href="./orders" class="nav-list__item__link">Мои заказы</a></li>
-                <li class="nav-list__item"><a href="./news" class="nav-list__item__link">Новости</a></li>
-                <li class="nav-list__item"><a href="./about" class="nav-list__item__link">О компании</a></li>
+                <li class="nav-list__item"><a href="/public/" class="nav-list__item__link">Главная</a></li>
+                <li class="nav-list__item"><a href="/public/orders" class="nav-list__item__link">Мои заказы</a></li>
+                <li class="nav-list__item"><a href="/public/news" class="nav-list__item__link">Новости</a></li>
+                <li class="nav-list__item"><a href="/public/about" class="nav-list__item__link">О компании</a></li>
             </ul>
         </nav>
         <div class="header-contact">
@@ -34,7 +34,9 @@
             @if (Route::has('login'))
                 <div class="authorization-block">
                     @auth
-                        <a href="{{ url('/admin') }}" class="authorization-block__link">Админка</a>
+                        @if(Auth::user()->user_role == 'admin')
+                            <a href="{{ url('/admin') }}" class="authorization-block__link">Админка</a>
+                        @endif
                         <a href="{{ url('/logout') }}" class="authorization-block__link">Выйти</a>
                     @else
                         <a href="{{ route('login') }}" class="authorization-block__link">Войти</a>
@@ -102,25 +104,18 @@
                 </div>
                 <div class="content-main__container">
                     <div class="product-container">
-                        <div class="product-container__image-wrap"><img src="../../public/img/cover/game-1.jpg" class="image-wrap__image-product"></div>
+                        <div class="product-container__image-wrap"><img src={{ $game->image }} class="image-wrap__image-product"></div>
                         <div class="product-container__content-text">
-                            <div class="product-container__content-text__title">SuperMario</div>
+                            <div class="product-container__content-text__title">{{ $game->name }}</div>
                             <div class="product-container__content-text__price">
                                 <div class="product-container__content-text__price__value">
-                                    Цена: <b>400</b>
+                                    Цена: <b>{{ $game->price }}</b>
                                     руб
-                                </div><a href="#" class="btn btn-blue">Купить</a>
+                                </div><a href="/public/checkout/{{ $game->id }}" class="btn btn-blue">Купить</a>
                             </div>
                             <div class="product-container__content-text__description">
                                 <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                                    minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                    aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-                                    in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                                    deserunt mollit anim id est laborum. Sed ut perspiciatis
-                                    unde omnis iste natus error sit voluptatem
+                                    {{ $game->annotation }}
                                 </p>
                                 <p>
                                     Lorem ipsum dolor sit amet, consectetur adipisicing elit,

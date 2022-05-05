@@ -34,7 +34,9 @@
             @if (Route::has('login'))
                 <div class="authorization-block">
                     @auth
-                        <a href="{{ url('/admin') }}" class="authorization-block__link">Админка</a>
+                        @if(Auth::user()->user_role == 'admin')
+                            <a href="{{ url('/admin') }}" class="authorization-block__link">Админка</a>
+                        @endif
                         <a href="{{ url('/logout') }}" class="authorization-block__link">Выйти</a>
                     @else
                         <a href="{{ route('login') }}" class="authorization-block__link">Войти</a>

@@ -34,7 +34,9 @@
             @if (Route::has('login'))
                 <div class="authorization-block">
                     @auth
-                        <a href="{{ url('/admin') }}" class="authorization-block__link">Заказы</a>
+                        @if(Auth::user()->user_role == 'admin')
+                            <a href="{{ url('/admin') }}" class="authorization-block__link">Админка</a>
+                        @endif
                         <a href="{{ url('/logout') }}" class="authorization-block__link">Выйти</a>
                     @else
                         <a href="{{ route('login') }}" class="authorization-block__link">Войти</a>
@@ -86,9 +88,57 @@
                 <div class="content-main__container">
                     <h1>Администрирование</h1>
                     <h2>Управление категориями</h2>
+                    <table class="admin-table">
+                        <th>Название</th>
+                        <th>Описание</th>
+                        <th>Редактирование</th>
+                        @foreach($categories as $category)
+                            <tr>
+                                <td>{{ $category->title }}</td>
+                                <td>{{ $category->description }}</td>
+                                <td><a class="admin-link" href="./admin/editcat/{{ $category->id }}">Edit</a><a class="admin-link" href="./admin/deletecat/{{ $category->id }}">Delete</a></td>
+                            </tr>
+                        @endforeach
+                        <a href="./admin/newcat">Добавить новую категорию</a>
+                    </table>
                     <h2>Управление товарами</h2>
-                    <h2>Управление заказами</h2>
+                    <table class="admin-table">
+                        <th>Название</th>
+                        <th>Категория</th>
+                        <th>Цена</th>
+                        <th>Описание</th>
+                        <th>Редактирование</th>
+                        @foreach($products as $product)
+                            <tr>
+                                <td>{{ $product->name }}</td>
+                                <td>{{ $product->category }}</td>
+                                <td>{{ $product->price }}</td>
+                                <td>{{ $product->annotation }}</td>
+                                <td><a class="admin-link" href="./admin/editprod/{{ $product->id }}">Edit</a><a class="admin-link" href="./admin/deleteprod/{{ $product->id }}">Delete</a></td>
+                            </tr>
+                        @endforeach
+                        <a href="./admin/addnewprod">Добавить новый товар</a>
+                    </table>
+                    <h2>Просмотр заказов</h2>
+                    <table class="admin-table">
+                        <th>ID продукта</th>
+                        <th>Покупатель</th>
+                        <th>Почта</th>
+                        @foreach($orders as $order)
+                            <tr>
+                                <td>{{ $order->product_id }}</td>
+                                <td>{{ $order->customer }}</td>
+                                <td>{{ $order->email }}</td>
+                            </tr>
+                        @endforeach
+                    </table>
                     <h2>Адрес отправки уведомлений</h2>
+                    <form action="./admin/changemail" method="post">
+                        @csrf
+                        <label for="new-email">Укажите новую почту: </label>
+                        <input type="text" id="new-email" name="new_email">
+                        <input type="submit">
+                    </form>
                 </div>
             </div>
             <div class="content-bottom">

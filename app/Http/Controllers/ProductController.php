@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -13,4 +12,9 @@ class ProductController extends Controller
         return view('welcome', ['games' => $products]);
     }
 
+    function showGame($id)
+    {
+        $game = Product::query()->find($id);
+        return view('product', ['game' => $game]);
+    }
 }

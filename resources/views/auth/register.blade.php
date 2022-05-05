@@ -44,6 +44,13 @@
                                 type="password"
                                 name="password_confirmation" required />
             </div>
+            <div class="mt-4">
+                <x-label for="admin" value="Admin" />
+
+                <x-input id="admin"
+                         type="checkbox"
+                         name="admin" />
+            </div>
 
             <div class="flex items-center justify-end mt-4">
                 <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">

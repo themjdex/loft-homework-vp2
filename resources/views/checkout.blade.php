@@ -15,10 +15,10 @@
         <div class="logotype-container"><a href="#" class="logotype-link"><img src="../../public/img/logo.png" alt="Логотип"></a></div>
         <nav class="main-navigation">
             <ul class="nav-list">
-                <li class="nav-list__item"><a href="./" class="nav-list__item__link">Главная</a></li>
-                <li class="nav-list__item"><a href="./orders" class="nav-list__item__link">Мои заказы</a></li>
-                <li class="nav-list__item"><a href="./news" class="nav-list__item__link">Новости</a></li>
-                <li class="nav-list__item"><a href="./about" class="nav-list__item__link">О компании</a></li>
+                <li class="nav-list__item"><a href="/public" class="nav-list__item__link">Главная</a></li>
+                <li class="nav-list__item"><a href="/public/orders" class="nav-list__item__link">Мои заказы</a></li>
+                <li class="nav-list__item"><a href="/public/news" class="nav-list__item__link">Новости</a></li>
+                <li class="nav-list__item"><a href="/public/about" class="nav-list__item__link">О компании</a></li>
             </ul>
         </nav>
         <div class="header-contact">
@@ -34,7 +34,9 @@
             @if (Route::has('login'))
                 <div class="authorization-block">
                     @auth
-                        <a href="{{ url('/admin') }}" class="authorization-block__link">Заказы</a>
+                        @if(Auth::user()->user_role == 'admin')
+                            <a href="{{ url('/admin') }}" class="authorization-block__link">Админка</a>
+                        @endif
                         <a href="{{ url('/logout') }}" class="authorization-block__link">Выйти</a>
                     @else
                         <a href="{{ route('login') }}" class="authorization-block__link">Войти</a>

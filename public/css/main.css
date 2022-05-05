@@ -1142,3 +1142,23 @@ a img.aligncenter {
     width: 100px;
     height: 40px;
 }
+.admin-table {
+    border-collapse: collapse;
+    border: 3px solid black;
+
+}
+th, td {
+    padding: 10px;
+    border: black solid 1px;
+}
+tr {
+    border: black solid 1px;
+}
+.admin-link {
+    padding: 5px;
+}
+
+.admin-form {
+    display: flex;
+    flex-direction: column;
+}
