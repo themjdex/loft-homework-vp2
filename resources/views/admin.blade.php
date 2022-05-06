@@ -133,6 +133,7 @@
                         @endforeach
                     </table>
                     <h2>Адрес отправки уведомлений</h2>
+                    <p>Текущий адрес: {{ $adminEmail }}</p>
                     <form action="./admin/changemail" method="post">
                         @csrf
                         <label for="new-email">Укажите новую почту: </label>

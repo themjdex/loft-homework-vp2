@@ -55,11 +55,11 @@
                 <div class="sidebar-item__title">Категории</div>
                 <div class="sidebar-item__content">
                     <ul class="sidebar-category">
-                        <li class="sidebar-category__item"><a href="#" class="sidebar-category__item__link">Action</a></li>
-                        <li class="sidebar-category__item"><a href="#" class="sidebar-category__item__link">RPG</a></li>
-                        <li class="sidebar-category__item"><a href="#" class="sidebar-category__item__link">Квесты</a></li>
-                        <li class="sidebar-category__item"><a href="#" class="sidebar-category__item__link">Онлайн-игры</a></li>
-                        <li class="sidebar-category__item"><a href="#" class="sidebar-category__item__link">Стратегии</a></li>
+                        <li class="sidebar-category__item"><a href="/public/category/3" class="sidebar-category__item__link">Action</a></li>
+                        <li class="sidebar-category__item"><a href="/public/category/2" class="sidebar-category__item__link">RPG</a></li>
+                        <li class="sidebar-category__item"><a href="/public/category/4" class="sidebar-category__item__link">Квесты</a></li>
+                        <li class="sidebar-category__item"><a href="/public/category/5" class="sidebar-category__item__link">Онлайн-игры</a></li>
+                        <li class="sidebar-category__item"><a href="/public/category/1" class="sidebar-category__item__link">Стратегии</a></li>
                     </ul>
                 </div>
             </div>
@@ -91,7 +91,7 @@
             <div class="content-middle">
                 <div class="content-head__container">
                     <div class="content-head__title-wrap">
-                        <div class="content-head__title-wrap__title bcg-title">The Witcher 3: Wild Hunt в разделе action</div>
+                        <div class="content-head__title-wrap__title bcg-title">{{ $game->name }} в разделе {{ $game->category }}</div>
                     </div>
                     <div class="content-head__search-block">
                         <div class="search-container">

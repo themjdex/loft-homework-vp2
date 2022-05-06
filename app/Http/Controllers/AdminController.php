@@ -15,8 +15,9 @@ class AdminController extends Controller
         $categories = Category::all();
         $products = Product::all();
         $orders = Order::all();
+        $email = AdminEmail::query()->value('admin_email');
 
-        return view('admin', ['categories' => $categories, 'products' => $products, 'orders' => $orders]);
+        return view('admin', ['categories' => $categories, 'products' => $products, 'orders' => $orders, 'adminEmail' => $email]);
     }
 
     function editCategory($id)
@@ -57,7 +58,7 @@ class AdminController extends Controller
             'new_title' => 'required',
             'new_desc' => 'required']);
 
-        $res = Category::query()->insert(['title' => $newTitle, 'description' => $newDesc]);
+        Category::query()->insert(['title' => $newTitle, 'description' => $newDesc]);
 
         return redirect('/admin');
     }

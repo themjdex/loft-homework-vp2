@@ -17,10 +17,10 @@
             <div class="logotype-container"><a href="#" class="logotype-link"><img src="../../../public/img/logo.png" alt="Логотип"></a></div>
             <nav class="main-navigation">
                 <ul class="nav-list">
-                    <li class="nav-list__item"><a href="./" class="nav-list__item__link">Главная</a></li>
-                    <li class="nav-list__item"><a href="./orders" class="nav-list__item__link">Мои заказы</a></li>
-                    <li class="nav-list__item"><a href="./news" class="nav-list__item__link">Новости</a></li>
-                    <li class="nav-list__item"><a href="./about" class="nav-list__item__link">О компании</a></li>
+                    <li class="nav-list__item"><a href="/public/" class="nav-list__item__link">Главная</a></li>
+                    <li class="nav-list__item"><a href="/public/orders" class="nav-list__item__link">Мои заказы</a></li>
+                    <li class="nav-list__item"><a href="/public/news" class="nav-list__item__link">Новости</a></li>
+                    <li class="nav-list__item"><a href="/public/about" class="nav-list__item__link">О компании</a></li>
                 </ul>
             </nav>
             <div class="header-contact">
@@ -57,11 +57,11 @@
                     <div class="sidebar-item__title">Категории</div>
                     <div class="sidebar-item__content">
                         <ul class="sidebar-category">
-                            <li class="sidebar-category__item"><a href="./category/3" class="sidebar-category__item__link">Action</a></li>
-                            <li class="sidebar-category__item"><a href="./category/2" class="sidebar-category__item__link">RPG</a></li>
-                            <li class="sidebar-category__item"><a href="./category/4" class="sidebar-category__item__link">Квесты</a></li>
-                            <li class="sidebar-category__item"><a href="./category/5" class="sidebar-category__item__link">Онлайн-игры</a></li>
-                            <li class="sidebar-category__item"><a href="./category/1" class="sidebar-category__item__link">Стратегии</a></li>
+                            <li class="sidebar-category__item"><a href="/public/category/3" class="sidebar-category__item__link">Action</a></li>
+                            <li class="sidebar-category__item"><a href="/public/category/2" class="sidebar-category__item__link">RPG</a></li>
+                            <li class="sidebar-category__item"><a href="/public/category/4" class="sidebar-category__item__link">Квесты</a></li>
+                            <li class="sidebar-category__item"><a href="/public/category/5" class="sidebar-category__item__link">Онлайн-игры</a></li>
+                            <li class="sidebar-category__item"><a href="/public/category/1" class="sidebar-category__item__link">Стратегии</a></li>
                         </ul>
                     </div>
                 </div>

@@ -15,10 +15,10 @@
         <div class="logotype-container"><a href="#" class="logotype-link"><img src="../../public/img/logo.png" alt="Логотип"></a></div>
         <nav class="main-navigation">
             <ul class="nav-list">
-                <li class="nav-list__item"><a href="http://loft-vp2/public" class="nav-list__item__link">Главная</a></li>
-                <li class="nav-list__item"><a href="http://loft-vp2/public/orders" class="nav-list__item__link">Мои заказы</a></li>
-                <li class="nav-list__item"><a href="http://loft-vp2/public/news" class="nav-list__item__link">Новости</a></li>
-                <li class="nav-list__item"><a href="http://loft-vp2/public/about" class="nav-list__item__link">О компании</a></li>
+                <li class="nav-list__item"><a href="/public" class="nav-list__item__link">Главная</a></li>
+                <li class="nav-list__item"><a href="/orders" class="nav-list__item__link">Мои заказы</a></li>
+                <li class="nav-list__item"><a href="/news" class="nav-list__item__link">Новости</a></li>
+                <li class="nav-list__item"><a href="/about" class="nav-list__item__link">О компании</a></li>
             </ul>
         </nav>
         <div class="header-contact">
@@ -106,7 +106,7 @@
                     <div class="products-category__list">
                         @foreach($games as $game)
                             <div class="products-category__list__item">
-                                <div class="products-category__list__item__title-product"><a href="#">{{ $game['name'] }}</a></div>
+                                <div class="products-category__list__item__title-product"><a href="/public/product/{{ $game['id'] }}">{{ $game['name'] }}</a></div>
                                 <div class="products-category__list__item__thumbnail"><a href="#" class="products-category__list__item__thumbnail__link"><img src={{ $game['image'] }} alt="Preview-image"></a></div>
                                 <div class="products-category__list__item__description"><span class="products-price">{{ $game['price'] }} руб.</span><a href="/public/checkout/{{ $game['id'] }}" class="btn btn-blue">Купить</a></div>
                             </div>
